@@ -1,0 +1,47 @@
+buildscript {
+    ext.kotlin_version = '1.2.71'
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+subprojects {
+    project.configurations.all {
+        resolutionStrategy {
+            //force "cached_network_image_provider:1.1.1"
+            //force "androidx.core:core:1.1.0"
+            //force "androidx.versionedparcelable:versionedparcelable:1.1.0"
+            /*force "com.google.android.gms:play-services-basement:17.0.0"
+            force "com.google.android.gms:play-services-tasks:17.0.0"
+            force "com.google.android.gms:play-services-base:17.0.0"*/
+            //force "androidx.versionedparcelable:versionedparcelable:1.1.0"
+            //force "com.google.android.gms:play-services-basement:17.0.0"
+            //force "com.google.android.gms:play-services-tasks:17.0.0"
+            //force "com.google.android.gms:play-services-base:17.0.0"
+        }
+    }
+}
